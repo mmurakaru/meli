@@ -24,10 +24,7 @@ export async function GET(request: NextRequest) {
     }
 
     const customerId = session.customer.id;
-    const subscriptionId =
-      typeof session.subscription === 'string'
-        ? session.subscription
-        : session.subscription?.id;
+    const subscriptionId = typeof session.subscription === 'string' ? session.subscription : session.subscription?.id;
 
     if (!subscriptionId) {
       throw new Error('No subscription found for this session.');

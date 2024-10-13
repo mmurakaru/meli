@@ -6,11 +6,7 @@ import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Users, Settings, Shield, Activity, Menu } from 'lucide-react';
 
-export default function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -49,12 +45,14 @@ export default function DashboardLayout({
         >
           <nav className="h-full overflow-y-auto p-4">
             {navItems.map((item) => (
-              <Link key={item.href} href={item.href} passHref>
+              <Link
+                key={item.href}
+                href={item.href}
+                passHref
+              >
                 <Button
                   variant={pathname === item.href ? 'secondary' : 'ghost'}
-                  className={`my-1 w-full justify-start ${
-                    pathname === item.href ? 'bg-gray-100' : ''
-                  }`}
+                  className={`my-1 w-full justify-start ${pathname === item.href ? 'bg-gray-100' : ''}`}
                   onClick={() => setIsSidebarOpen(false)}
                 >
                   <item.icon className="mr-2 h-4 w-4" />

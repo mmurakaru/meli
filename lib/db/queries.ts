@@ -11,11 +11,7 @@ export async function getUser() {
   }
 
   const sessionData = await verifyToken(sessionCookie.value);
-  if (
-    !sessionData ||
-    !sessionData.user ||
-    typeof sessionData.user.id !== 'number'
-  ) {
+  if (!sessionData || !sessionData.user || typeof sessionData.user.id !== 'number') {
     return null;
   }
 
@@ -37,11 +33,7 @@ export async function getUser() {
 }
 
 export async function getTeamByStripeCustomerId(customerId: string) {
-  const result = await db
-    .select()
-    .from(teams)
-    .where(eq(teams.stripeCustomerId, customerId))
-    .limit(1);
+  const result = await db.select().from(teams).where(eq(teams.stripeCustomerId, customerId)).limit(1);
 
   return result.length > 0 ? result[0] : null;
 }
@@ -53,7 +45,7 @@ export async function updateTeamSubscription(
     stripeProductId: string | null;
     planName: string | null;
     subscriptionStatus: string;
-  }
+  },
 ) {
   await db
     .update(teams)

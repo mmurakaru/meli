@@ -15,10 +15,10 @@ type ActionState = {
 };
 
 export function Settings({ teamData }: { teamData: TeamDataWithMembers }) {
-  const [removeState, removeAction, isRemovePending] = useActionState<
-    ActionState,
-    FormData
-  >(removeTeamMember, { error: '', success: '' });
+  const [removeState, removeAction, isRemovePending] = useActionState<ActionState, FormData>(removeTeamMember, {
+    error: '',
+    success: '',
+  });
 
   const getUserDisplayName = (user: Pick<User, 'id' | 'name' | 'email'>) => {
     return user.name || user.email || 'Unknown User';
@@ -35,9 +35,7 @@ export function Settings({ teamData }: { teamData: TeamDataWithMembers }) {
           <div className="space-y-4">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
               <div className="mb-4 sm:mb-0">
-                <p className="font-medium">
-                  Current Plan: {teamData.planName || 'Free'}
-                </p>
+                <p className="font-medium">Current Plan: {teamData.planName || 'Free'}</p>
                 <p className="text-sm text-muted-foreground">
                   {teamData.subscriptionStatus === 'active'
                     ? 'Billed monthly'
@@ -47,7 +45,10 @@ export function Settings({ teamData }: { teamData: TeamDataWithMembers }) {
                 </p>
               </div>
               <form action={customerPortalAction}>
-                <Button type="submit" variant="outline">
+                <Button
+                  type="submit"
+                  variant="outline"
+                >
                   Manage Subscription
                 </Button>
               </form>
@@ -62,11 +63,14 @@ export function Settings({ teamData }: { teamData: TeamDataWithMembers }) {
         <CardContent>
           <ul className="space-y-4">
             {teamData.teamMembers.map((member, index) => (
-              <li key={member.id} className="flex items-center justify-between">
+              <li
+                key={member.id}
+                className="flex items-center justify-between"
+              >
                 <div className="flex items-center space-x-4">
                   <Avatar>
                     <AvatarImage
-                      src={`/placeholder.svg?height=32&width=32`}
+                      src={'/placeholder.svg?height=32&width=32'}
                       alt={getUserDisplayName(member.user)}
                     />
                     <AvatarFallback>
@@ -77,17 +81,17 @@ export function Settings({ teamData }: { teamData: TeamDataWithMembers }) {
                     </AvatarFallback>
                   </Avatar>
                   <div>
-                    <p className="font-medium">
-                      {getUserDisplayName(member.user)}
-                    </p>
-                    <p className="text-sm text-muted-foreground capitalize">
-                      {member.role}
-                    </p>
+                    <p className="font-medium">{getUserDisplayName(member.user)}</p>
+                    <p className="text-sm text-muted-foreground capitalize">{member.role}</p>
                   </div>
                 </div>
                 {index > 1 ? (
                   <form action={removeAction}>
-                    <input type="hidden" name="memberId" value={member.id} />
+                    <input
+                      type="hidden"
+                      name="memberId"
+                      value={member.id}
+                    />
                     <Button
                       type="submit"
                       variant="outline"
@@ -101,9 +105,7 @@ export function Settings({ teamData }: { teamData: TeamDataWithMembers }) {
               </li>
             ))}
           </ul>
-          {removeState?.error && (
-            <p className="text-red-500 mt-4">{removeState.error}</p>
-          )}
+          {removeState?.error && <p className="text-red-500 mt-4">{removeState.error}</p>}
         </CardContent>
       </Card>
       <InviteTeamMember />

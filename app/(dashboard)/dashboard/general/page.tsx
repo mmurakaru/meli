@@ -16,10 +16,10 @@ type ActionState = {
 
 export default function GeneralPage() {
   const { user } = useUser();
-  const [state, formAction, isPending] = useActionState<ActionState, FormData>(
-    updateAccount,
-    { error: '', success: '' }
-  );
+  const [state, formAction, isPending] = useActionState<ActionState, FormData>(updateAccount, {
+    error: '',
+    success: '',
+  });
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -37,16 +37,17 @@ export default function GeneralPage() {
 
   return (
     <section className="flex-1 p-4 lg:p-8">
-      <h1 className="text-lg lg:text-2xl font-medium text-gray-900 mb-6">
-        General Settings
-      </h1>
+      <h1 className="text-lg lg:text-2xl font-medium text-gray-900 mb-6">General Settings</h1>
 
       <Card>
         <CardHeader>
           <CardTitle>Account Information</CardTitle>
         </CardHeader>
         <CardContent>
-          <form className="space-y-4" onSubmit={handleSubmit}>
+          <form
+            className="space-y-4"
+            onSubmit={handleSubmit}
+          >
             <div>
               <Label htmlFor="name">Name</Label>
               <Input
@@ -68,12 +69,8 @@ export default function GeneralPage() {
                 required
               />
             </div>
-            {state.error && (
-              <p className="text-red-500 text-sm">{state.error}</p>
-            )}
-            {state.success && (
-              <p className="text-green-500 text-sm">{state.success}</p>
-            )}
+            {state.error && <p className="text-red-500 text-sm">{state.error}</p>}
+            {state.success && <p className="text-green-500 text-sm">{state.success}</p>}
             <Button
               type="submit"
               className="bg-orange-500 hover:bg-orange-600 text-white"

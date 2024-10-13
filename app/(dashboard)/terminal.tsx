@@ -17,9 +17,7 @@ export function Terminal() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setTerminalStep((prev) =>
-        prev < terminalSteps.length - 1 ? prev + 1 : prev
-      );
+      setTerminalStep((prev) => (prev < terminalSteps.length - 1 ? prev + 1 : prev));
     }, 500);
 
     return () => clearTimeout(timer);
@@ -45,11 +43,7 @@ export function Terminal() {
             className="text-gray-400 hover:text-white transition-colors"
             aria-label="Copy to clipboard"
           >
-            {copied ? (
-              <Check className="h-5 w-5" />
-            ) : (
-              <Copy className="h-5 w-5" />
-            )}
+            {copied ? <Check className="h-5 w-5" /> : <Copy className="h-5 w-5" />}
           </button>
         </div>
         <div className="space-y-2">
