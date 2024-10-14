@@ -33,8 +33,8 @@ function Header() {
           href="/"
           className="flex items-center"
         >
-          <CircleIcon className="h-6 w-6 text-orange-500" />
-          <span className="ml-2 text-xl font-semibold text-gray-900">Meli</span>
+          <CircleIcon className="h-6 w-6 text-purple-500" />
+          <span className="ml-2 text-xl font-semibold text-gray-900">MELI</span>
         </Link>
         <div className="flex items-center space-x-4">
           <Link
